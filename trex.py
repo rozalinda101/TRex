@@ -16,8 +16,6 @@ class dino:
     def __init__(self):
         self.wys_na_wysw=200
         self.poz_na_szer=200
-        self.x=60
-        self.y=0
         self.wys=wys_dino
         self.szer=szer_dino
 
