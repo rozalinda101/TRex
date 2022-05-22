@@ -16,7 +16,7 @@ wys_dino=40
 szer_dino=20
 
 #okreslam klasę obiektu dinozaur
-class dino:
+class dino():
     def __init__(self):
         #okreslam pozycje dinozaura na ekranie
         self.wys_na_wysw=200
@@ -36,19 +36,48 @@ class dino:
     #skakanie - zmieniam pozycję, wymazuję tego co na ziemi, chwila skoku - 0,5 sekundy, zmieniam pozycję znowy na ziemię
     def skakanie(self,wyswietlacz):
         self.zniknij(wyswietlacz)
-        self.wys_na_wysw-=60
+        self.wys_na_wysw-=70
         self.narysuj(wyswietlacz)
         pygame.display.update()
         time.sleep(0.5)
         self.zniknij(wyswietlacz)
-        self.wys_na_wysw+=60
+        self.wys_na_wysw+=70
         self.narysuj(wyswietlacz)
         pygame.display.update()
 
 
+#okreslam klase kaktus
+class kaktus():
+    def __init__(self):
+        #okreslam pozycje kaktusa na ekranie
+        self.wys_na_wysw=180
+        self.poz_na_szer=700
+        #przypisuje rozmiar dinozaura
+        self.wys=60
+        self.szer=20
+
+    #rysuję "kaktusa"
+    def narysuj(self,wyswietlacz):
+        pygame.draw.rect(wyswietlacz,szary2,[self.poz_na_szer,self.wys_na_wysw,self.szer,self.wys])
+
+    #wymazuję kaktusa przy poruszaniu
+    def zniknij(self,wyswietlacz):
+        pygame.draw.rect(wyswietlacz,bialy,[self.poz_na_szer,self.wys_na_wysw,self.szer,self.wys])
+
+    #poruszanie - zmieniam pozycję, wymazuję, zmieniam pozycję znowu
+    def poruszanie(self,wyswietlacz):
+        self.zniknij(wyswietlacz)
+        self.poz_na_szer-=3
+        self.narysuj(wyswietlacz)
+        pygame.display.update()
+        time.sleep(0.1)
 
 
 dinozaur=dino()
+
+kaktus1=kaktus()
+
+# kaktus2=kaktus()
 
 while True:
     #wypełniam wyświetlacz białym
@@ -57,6 +86,10 @@ while True:
     pygame.draw.rect(wyswietlacz,szary1,[0,240,700,160])
     #rysuję "dinozaura"
     dinozaur.narysuj(wyswietlacz)
+    #rysuję kaktusa
+    kaktus1.narysuj(wyswietlacz)
+    #poruszam kaktusa
+    kaktus1.poruszanie(wyswietlacz)
     for event in pygame.event.get():
         #zeby się gra zatrzymala w pewnym momencie
         if event.type==pygame.QUIT:
@@ -68,7 +101,6 @@ while True:
                 dinozaur.skakanie(wyswietlacz)
                 #żeby nie dało się cały czas skakać
                 time.sleep(0.5)
-
 
     pygame.display.update()
 
