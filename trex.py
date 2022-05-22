@@ -52,7 +52,7 @@ class kaktus():
         #okreslam pozycje kaktusa na ekranie
         self.wys_na_wysw=180
         self.poz_na_szer=700
-        #przypisuje rozmiar dinozaura
+        #przypisuje rozmiar kaktusa
         self.wys=60
         self.szer=20
 
