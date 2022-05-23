@@ -5,6 +5,7 @@ pygame.init()
 #rozmiar wyswietlacza określam
 rozmiar=szer,wys=700,400
 wyswietlacz=pygame.display.set_mode(rozmiar)
+pygame.display.set_caption("T-rex")
 
 #określam oznaczenia kolorow w rgb
 szary1=150,150,150
@@ -50,27 +51,21 @@ class dino():
 class kaktus():
     def __init__(self):
         #okreslam pozycje kaktusa na ekranie
-        self.wys_na_wysw=180
+        self.wys_na_wysw=190
         self.poz_na_szer=700
         #przypisuje rozmiar kaktusa
-        self.wys=60
+        self.wys=50
         self.szer=20
 
     #rysuję "kaktusa"
     def narysuj(self,wyswietlacz):
         pygame.draw.rect(wyswietlacz,szary2,[self.poz_na_szer,self.wys_na_wysw,self.szer,self.wys])
 
-    #wymazuję kaktusa przy poruszaniu
-    def zniknij(self,wyswietlacz):
-        pygame.draw.rect(wyswietlacz,bialy,[self.poz_na_szer,self.wys_na_wysw,self.szer,self.wys])
-
     #poruszanie - zmieniam pozycję, wymazuję, zmieniam pozycję znowu
     def poruszanie(self,wyswietlacz):
-        self.zniknij(wyswietlacz)
-        self.poz_na_szer-=3
+        self.poz_na_szer-=0.1
         self.narysuj(wyswietlacz)
         pygame.display.update()
-        time.sleep(0.1)
 
 
 dinozaur=dino()
