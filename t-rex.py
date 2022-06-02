@@ -23,14 +23,11 @@ podloga.shapesize(stretch_wid=15, stretch_len=50)
 podloga.penup()
 podloga.goto(0, -230)
 
-# punkty
-punkty = turtle.Turtle()
-punkty.speed(0)
-punkty.color("black")
-punkty.penup()
-punkty.hideturtle()
-punkty.goto(200,200)
-punkty.write("Wynik: 0", align = "center", font=("Courier",10,"normal"))
+punkty_aktualne=0
+
+czas_pocz=time.time()
+
+
 
 
 
@@ -82,11 +79,25 @@ def restart():
     okno_restart.shape("square")
     okno_restart.color("blue")
     okno_restart.shapesize(stretch_wid=5,stretch_len=10)
-    okno_restart.write("KONIEC GRY! Zdobyłeś 0 punktów", align = "center", font=("Courier",10,"normal"))
+    okno_restart.write(f"KONIEC GRY! Zdobyłeś {punkty_aktualne} punktów", align = "center", font=("Courier",10,"normal"))
 
 
 # Główna pętla gry
 while True:
+
+    # punkty
+    punkty = turtle.Turtle()
+    punkty.speed(0)
+    punkty.color("black")
+    punkty.penup()
+    punkty.hideturtle()
+    punkty.goto(200,200)
+    punkty.write(f"Wynik: {punkty_aktualne}", align = "center", font=("Courier",15,"normal"))
+    punkty.clear()
+
+    czas=time.time()
+
+    punkty_aktualne=round((czas-czas_pocz)/3)
 
     # GRAWITACJA
     dino.dy += GRAWITACJA
