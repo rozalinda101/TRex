@@ -1,6 +1,6 @@
 import turtle
 import time
-
+import random
 
 # Stworzenie okna
 
@@ -114,8 +114,16 @@ while True:
         dino.stan = "biegnie"
 
     #Poruszanie kaktusem
-    kaktus_1.setx(kaktus_1.xcor() + kaktus_1.dx)
+    x = kaktus_1.xcor()
+    x += kaktus_1.dx
+    kaktus_1.setx(x)
 
+    
+    if kaktus_1.xcor() < -400:
+        x = random.randint(400, 600)
+        kaktus_1.setx(x)
+        kaktus_1.dx *= 1.05
+        print(kaktus_1.dx)
     #kolizja z jednym kaktusem
     if dino.xcor()>kaktus_1.xcor()-10 and dino.xcor()<kaktus_1.xcor()+10 and dino.ycor()<=kaktus_1.ycor():
         dino.setx(pozycja)
