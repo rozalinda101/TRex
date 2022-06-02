@@ -41,15 +41,15 @@ kaktus_1.penup()
 pozycja = kaktus_1.goto(350, -60)
 kaktus_1.dx = -0.6
 
-# # Kaktus 2
-# kaktus_2 = turtle.Turtle()
-# kaktus_2.speed(0)
-# kaktus_2.shape("square")
-# kaktus_2.color("grey")
-# kaktus_2.shapesize(stretch_wid=2, stretch_len=1)
-# kaktus_2.penup()
-# kaktus_2.goto(400, -60)
-# kaktus_2.dx = -0.2
+# Kaktus 2
+kaktus_2 = turtle.Turtle()
+kaktus_2.speed(0)
+kaktus_2.shape("square")
+kaktus_2.color("grey")
+kaktus_2.shapesize(stretch_wid=2, stretch_len=1)
+kaktus_2.penup()
+kaktus_2.goto(100, -60)
+kaktus_2.dx = -0.6
 
 # Dino
 dino = turtle.Turtle()
@@ -124,6 +124,18 @@ while True:
         kaktus_1.setx(x)
         kaktus_1.dx *= 1.05
         print(kaktus_1.dx)
+        
+    x = kaktus_2.xcor()
+    x += kaktus_2.dx
+    kaktus_2.setx(x)
+
+
+    if kaktus_2.xcor() < -400:
+        x = random.randint(400, 600)
+        kaktus_2.setx(x)
+        kaktus_2.dx *= 1.05
+        print(kaktus_2.dx)
+        
     #kolizja z jednym kaktusem
     if dino.xcor()>kaktus_1.xcor()-10 and dino.xcor()<kaktus_1.xcor()+10 and dino.ycor()<=kaktus_1.ycor():
         dino.setx(pozycja)
