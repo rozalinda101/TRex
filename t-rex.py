@@ -11,7 +11,7 @@ okno.setup(width=800, height=500)
 okno.tracer(0)
 
 POZIOM_PODŁOGI = -60
-GRAWITACJA = -0.002
+GRAWITACJA = -0.004
 punkty=0
 # Stworzenie podłogi
 
@@ -38,7 +38,7 @@ kaktus_1.shape("square")
 kaktus_1.color("black")
 kaktus_1.shapesize(stretch_wid=2, stretch_len=1)
 kaktus_1.penup()
-pozycja = kaktus_1.goto(350, -60)
+pozycja = kaktus_1.goto(random.randint(300,400), -60)
 kaktus_1.dx = -0.6
 
 # Kaktus 2
@@ -48,7 +48,7 @@ kaktus_2.shape("square")
 kaktus_2.color("grey")
 kaktus_2.shapesize(stretch_wid=2, stretch_len=1)
 kaktus_2.penup()
-kaktus_2.goto(100, -60)
+pozycja = kaktus_2.goto(random.randint(-50,100), -60)
 kaktus_2.dx = -0.6
 
 # Dino
@@ -138,6 +138,13 @@ while True:
         
     #kolizja z jednym kaktusem
     if dino.xcor()>kaktus_1.xcor()-10 and dino.xcor()<kaktus_1.xcor()+10 and dino.ycor()<=kaktus_1.ycor():
+        dino.setx(pozycja)
+        dino.sety(pozycja)
+        restart()
+        turtle.done()
+        
+    #kolizij z drugim kaktusem
+    if dino.xcor()>kaktus_2.xcor()-10 and dino.xcor()<kaktus_2.xcor()+10 and dino.ycor()<=kaktus_2.ycor():
         dino.setx(pozycja)
         dino.sety(pozycja)
         restart()
