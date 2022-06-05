@@ -1,3 +1,5 @@
+# POBIERZCIE 3 OBRAZKI Z DINO I WSADŹCIE DO TEGO FOLDERU, GDZIE MACIE ZAPISANE TO
+
 import turtle
 import time
 import random
@@ -8,8 +10,11 @@ okno.title("T-Rex")
 okno.bgcolor("white")
 okno.setup(width=800, height=500)
 okno.tracer(0)
+okno.addshape('dino_stoi.gif')
+okno.addshape('dino_ruch1.gif')
+okno.addshape('dino_ruch2.gif')
 
-POZIOM_PODŁOGI = -60
+POZIOM_PODŁOGI = -50
 GRAWITACJA = -0.004
 punkty=0
 
@@ -58,14 +63,21 @@ kaktus_3.dx = -0.6
 
 # Dino
 dino = turtle.Turtle()
-dino.speed(0)
-dino.shape("square")
-dino.color("black")
-dino.shapesize(stretch_wid=2, stretch_len=1.5)
 dino.penup()
+
+def dino_animacja():
+    if dino.shape() == "dino_ruch1.gif":
+        dino.shape("dino_ruch2.gif")
+    elif dino.shape() == "dino_ruch2.gif":
+        dino.shape("dino_ruch1.gif")
+    okno.ontimer(dino_animacja, 10)
+dino.speed(0)
+
 dino.dy = 0
 dino.stan = "biegnie"
-dino.goto(-250, -60)
+dino.shape("dino_ruch1.gif")
+dino_animacja()
+dino.goto(-250, -50)
 
 def skakanie():
     if dino.stan == "biegnie":
