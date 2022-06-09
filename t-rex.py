@@ -13,51 +13,59 @@ okno.tracer(0)
 okno.addshape('dino_stoi.gif')
 okno.addshape('dino_ruch1.gif')
 okno.addshape('dino_ruch2.gif')
+okno.addshape('kaktus1.gif')
 
 POZIOM_PODŁOGI = -50
-GRAWITACJA = -0.004
-punkty=0
+GRAWITACJA = -0.0035
+stan_punktow = 0
+czas_pocz = time.time()
+
+# punkty
+punkty = turtle.Turtle()
+punkty.speed(0)
+punkty.color("black")
+punkty.penup()
+punkty.hideturtle()
+punkty.goto(200,200)
+punkty.write("Wynik: 0", align = "center", font=("Courier",15,"normal"))
+
+
+
 
 # Stworzenie podłogi
 podloga = turtle.Turtle()
 podloga.speed(0)
 podloga.shape("square")
-podloga.color("grey")
+podloga.color("green")
 podloga.shapesize(stretch_wid=15, stretch_len=50)
 podloga.penup()
 podloga.goto(0, -230)
 
-punkty_aktualne=0
 
-czas_pocz=time.time()
 
 # Kaktus 1
 kaktus_1 = turtle.Turtle()
-kaktus_1.speed(0)
-kaktus_1.shape("square")
-kaktus_1.color("green")
-kaktus_1.shapesize(stretch_wid=2, stretch_len=1)
 kaktus_1.penup()
+kaktus_1.speed(0)
+kaktus_1.shape("kaktus1.gif")
 pozycja = kaktus_1.goto(random.randint(300,400), -60)
 kaktus_1.dx = -0.6
 
+
+
 # Kaktus 2
 kaktus_2 = turtle.Turtle()
-kaktus_2.speed(0)
-kaktus_2.shape("square")
-kaktus_2.color("green")
-kaktus_2.shapesize(stretch_wid=2, stretch_len=1)
 kaktus_2.penup()
+kaktus_2.speed(0)
+kaktus_2.shape("kaktus1.gif")
 pozycja = kaktus_2.goto(random.randint(600,700), -60)
 kaktus_2.dx = -0.6
 
 # Kaktus 3
 kaktus_3 = turtle.Turtle()
-kaktus_3.speed(0)
-kaktus_3.shape("square")
-kaktus_3.color("green")
-kaktus_3.shapesize(stretch_wid=2, stretch_len=1)
 kaktus_3.penup()
+kaktus_3.speed(0)
+kaktus_3.shape("kaktus1.gif")
 pozycja = kaktus_3.goto(random.randint(800,900), -60)
 kaktus_3.dx = -0.6
 
@@ -70,9 +78,9 @@ def dino_animacja():
         dino.shape("dino_ruch2.gif")
     elif dino.shape() == "dino_ruch2.gif":
         dino.shape("dino_ruch1.gif")
-    okno.ontimer(dino_animacja, 10)
-dino.speed(0)
+    okno.ontimer(dino_animacja, 150)
 
+dino.speed(0)
 dino.dy = 0
 dino.stan = "biegnie"
 dino.shape("dino_ruch1.gif")
@@ -91,24 +99,18 @@ def restart():
     okno_restart=turtle.Turtle()
     okno_restart.speed(0)
     okno_restart.color("red")
-    okno_restart.write(f"KONIEC GRY! Zdobyłeś {punkty_aktualne} punktów", align = "center", font=("Courier",15,"normal"))
+    okno_restart.write(f"KONIEC GRY! Zdobyłeś {stan_punktow} punktów", align = "center", font=("Courier",15,"normal"))
 
 # Główna pętla gry
 while True:
 
-    # punkty
-    punkty = turtle.Turtle()
-    punkty.speed(0)
-    punkty.color("black")
-    punkty.penup()
-    punkty.hideturtle()
-    punkty.goto(200,200)
-    punkty.write(f"Wynik: {punkty_aktualne}", align = "center", font=("Courier",15,"normal"))
-    punkty.clear()
+    # naliczanie punktów
 
     czas=time.time()
 
-    punkty_aktualne=round((czas-czas_pocz)/3)
+    stan_punktow=round((czas-czas_pocz)*10)
+    punkty.clear()
+    punkty.write("Wynik: {}".format(stan_punktow), align = "center", font=("Courier",15,"normal"))
 
     # GRAWITACJA
     dino.dy += GRAWITACJA
@@ -155,25 +157,22 @@ while True:
         kaktus_3.dx *= 1.05
         print(kaktus_2.dx)
 
-    #kolizja z jednym kaktusem
-    if dino.xcor()>kaktus_1.xcor()-25 and dino.xcor()<kaktus_1.xcor()+40 and dino.ycor()<=kaktus_1.ycor():
-        dino.setx(pozycja)
-        dino.sety(pozycja)
-        restart()
-        turtle.done()
+    #kolizja z pierwszym kaktusem
+    if -290 < kaktus_1.xcor() < -210:
+        if kaktus_1.xcor() -34 < dino.xcor() and dino.ycor() < -10:
+            restart()
+            turtle.done()
 
     #kolizja z drugim kaktusem
-    if dino.xcor()>kaktus_2.xcor()-25 and dino.xcor()<kaktus_2.xcor()+40 and dino.ycor()<=kaktus_2.ycor():
-        dino.setx(pozycja)
-        dino.sety(pozycja)
-        restart()
-        turtle.done()
+    if -290 < kaktus_2.xcor() < -210:
+        if kaktus_2.xcor() -34 < dino.xcor() and dino.ycor() < -10:
+            restart()
+            turtle.done()
 
     #kolizja z trzecim kaktusem
-    if dino.xcor()>kaktus_3.xcor()-25 and dino.xcor()<kaktus_3.xcor()+40 and dino.ycor()<=kaktus_3.ycor():
-        dino.setx(pozycja)
-        dino.sety(pozycja)
-        restart()
-        turtle.done()
+    if -290 < kaktus_3.xcor() < -210:
+        if kaktus_3.xcor() -34 < dino.xcor() and dino.ycor() < -10:
+            restart()
+            turtle.done()
 
     okno.update()
