@@ -66,7 +66,7 @@ kaktus_3 = turtle.Turtle()
 kaktus_3.penup()
 kaktus_3.speed(0)
 kaktus_3.shape("kaktus1.gif")
-pozycja = kaktus_3.goto(random.randint(800,900), -60)
+pozycja = kaktus_3.goto(random.randint(900,1000), -60)
 kaktus_3.dx = -0.6
 
 # Dino
