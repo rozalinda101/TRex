@@ -8,8 +8,12 @@ wn.title("T-Rex")
 wn.bgcolor("white")
 wn.setup(width=800, height=500)
 wn.tracer(0)
+wn.addshape('dino_stoi.gif')
+wn.addshape('dino_ruch1.gif')
+wn.addshape('dino_ruch2.gif')
 
-POZIOM_PODŁOGI = -60
+
+POZIOM_PODŁOGI = -50
 GRAWITACJA = -0.002
 
 # Stworzenie podłogi
@@ -47,19 +51,32 @@ kaktus_2.dx = -0.2
 
 # Dino
 dino = turtle.Turtle()
-dino.speed(0)
-dino.shape("square")
-dino.color("grey")
-dino.shapesize(stretch_wid=2, stretch_len=1.5)
 dino.penup()
+
+def dino_animacja():
+    if dino.shape() == "dino_ruch1.gif":
+        dino.shape("dino_ruch2.gif")
+    elif dino.shape() == "dino_ruch2.gif":
+        dino.shape("dino_ruch1.gif")
+    wn.ontimer(dino_animacja, 10)
+dino.speed(0)
+
 dino.dy = 0
 dino.stan = "biegnie"
-dino.goto(-250, -60)
+dino.shape("dino_ruch1.gif")
+dino_animacja()
+dino.goto(-250, -50)
+
+
 
 def skakanie():
     if dino.stan == "biegnie":
         dino.dy = 0.7
         dino.stan = "skacze"
+
+
+
+
 
 wn.listen()
 wn.onkeypress(skakanie, "space")
@@ -83,6 +100,11 @@ while True:
         dino.sety(POZIOM_PODŁOGI)
         dino.dy = 0
         dino.stan = "biegnie"
+
+
+
+
+
 
     #Poruszanie kaktusem
     kaktus_1.setx(kaktus_1.xcor() + kaktus_1.dx)
