@@ -211,13 +211,14 @@ def run_game():
             if kaktus_3.xcor() -34 < dino.xcor() and dino.ycor() < -10:
                 koniec()
                 turtle.done()
-
-        #kolizja z pterodaktylem ???? cos nie dziala
-        if -290<pterodaktyl.ycor()<-210:
-            if pterodaktyl.xcor()-34<dino.ycor()and dino.ycor()< -10:
+                      
+        #kolizja z pterodaktylem              
+        if -290<pterodaktyl.xcor()<-210:
+            if pterodaktyl.xcor()-34 <dino.xcor()and dino.ycor()<50 and dino.ycor()>10:
                 koniec()
-                turtle.done()
+                turtle.done() 
 
+    
 
         okno.update()
 
