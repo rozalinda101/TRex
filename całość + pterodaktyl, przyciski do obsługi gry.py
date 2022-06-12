@@ -9,6 +9,7 @@ def run_game():
     okno.bgcolor("white")
     okno.setup(width=800, height=500)
     okno.tracer(0)
+    okno.bgpic('tło.gif')
     okno.addshape('dino_stoi.gif')
     okno.addshape('dino_ruch1.gif')
     okno.addshape('dino_ruch2.gif')
