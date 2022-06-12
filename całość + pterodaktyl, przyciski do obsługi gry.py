@@ -9,7 +9,6 @@ def run_game():
     okno.bgcolor("white")
     okno.setup(width=800, height=500)
     okno.tracer(0)
-    okno.bgpic('tło.gif')
     okno.addshape('dino_stoi.gif')
     okno.addshape('dino_ruch1.gif')
     okno.addshape('dino_ruch2.gif')
@@ -68,7 +67,7 @@ def run_game():
     pterodaktyl.penup()
     pterodaktyl.speed(0)
     pterodaktyl.shape("pterodaktyl.gif")
-    pozycja=pterodaktyl.goto(random.randint(900,950), 70)
+    pozycja=pterodaktyl.goto(random.randint(1700,1750), 70)
     pterodaktyl.dx = -0.6
 
 # Dino
