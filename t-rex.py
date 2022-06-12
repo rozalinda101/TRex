@@ -180,6 +180,15 @@ def run_game():
 #         kaktus_3.setx(x)
 #         kaktus_3.dx *= 1.05
 #         print(kaktus_2.dx)
+        x = pterodaktyl.xcor()
+        x +=pterodaktyl.dx
+        pterodaktyl.setx(x)
+
+        if pterodaktyl.xcor() < -400:
+            x = random.randint(400, 600)
+            pterodaktyl.setx(x)
+            pterodaktyl.dx *= 1.05
+            print(pterodaktyl.dx)
 
         if -290 < kaktus_1.xcor() < -210:
             if kaktus_1.xcor() -34 < dino.xcor() and dino.ycor() < -10:
