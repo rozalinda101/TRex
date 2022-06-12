@@ -110,7 +110,7 @@ def run_game():
         okno_restart.speed(0)
         okno_restart.color("red")
         okno_restart.write(f"KONIEC GRY! Zdobyłeś {stan_punktow}",align = "center", font=("Courier",15,"normal"))
-        time.sleep(3)
+        time.sleep(1.5)
         okno_restart.clear()
         restart=okno_restart.write(f"Jeśli chcesz zagrać jeszcze raz wciśnij spację\n Jeśli nie, wciśnij q",align="center", font=("Courier",12,"normal"))
         okno.listen()
