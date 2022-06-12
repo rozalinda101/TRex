@@ -16,7 +16,7 @@ def run_game():
     okno.addshape('pterodaktyl.gif')
 
     POZIOM_PODŁOGI = -50
-    GRAWITACJA = -0.0065
+    GRAWITACJA = -0.006
     stan_punktow = 0
     czas_pocz = time.time()
 
@@ -47,7 +47,7 @@ def run_game():
     kaktus_1.penup()
     kaktus_1.speed(0)
     kaktus_1.shape("kaktus1.gif")
-    pozycja = kaktus_1.goto(random.randint(300,400), -60)
+    pozycja = kaktus_1.goto(random.randint(300,500), -60)
     kaktus_1.dx = -0.6
 
 
@@ -57,23 +57,17 @@ def run_game():
     kaktus_2.penup()
     kaktus_2.speed(0)
     kaktus_2.shape("kaktus1.gif")
-    pozycja = kaktus_2.goto(random.randint(500,600), -60)
+    pozycja = kaktus_2.goto(random.randint(600,800), -60)
     kaktus_2.dx = -0.6
 
-# Kaktus 3
-    kaktus_3 = turtle.Turtle()
-    kaktus_3.penup()
-    kaktus_3.speed(0)
-    kaktus_3.shape("kaktus1.gif")
-    pozycja = kaktus_3.goto(random.randint(800,1000), -60)
-    kaktus_3.dx = -0.6
+
 
 #Pterodaktyl
     pterodaktyl=turtle.Turtle()
     pterodaktyl.penup()
     pterodaktyl.speed(0)
     pterodaktyl.shape("pterodaktyl.gif")
-    pozycja=pterodaktyl.goto(random.randint(1300,1400), 70)
+    pozycja=pterodaktyl.goto(random.randint(900,950), 70)
     pterodaktyl.dx = -0.6
 
 # Dino
@@ -172,16 +166,6 @@ def run_game():
             kaktus_2.dx *= 1.05
             print(kaktus_2.dx)
 
-        x = kaktus_3.xcor()
-        x += kaktus_3.dx
-        kaktus_3.setx(x)
-
-        if kaktus_3.xcor() < -400:
-            x = random.randint(400, 600)
-            kaktus_3.setx(x)
-            kaktus_3.dx *= 1.05
-            print(kaktus_2.dx)
-
         #poruszanie pterodaktylem
         x = pterodaktyl.xcor()
         x+= pterodaktyl.dx
@@ -206,11 +190,6 @@ def run_game():
                 koniec()
                 turtle.done()
 
-        #kolizja z trzecim kaktusem
-        if -290 < kaktus_3.xcor() < -210:
-            if kaktus_3.xcor() -34 < dino.xcor() and dino.ycor() < -10:
-                koniec()
-                turtle.done()
                       
         #kolizja z pterodaktylem              
         if -290<pterodaktyl.xcor()<-210:
