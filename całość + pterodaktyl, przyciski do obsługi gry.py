@@ -68,7 +68,7 @@ def run_game():
     pterodaktyl.speed(0)
     pterodaktyl.shape("pterodaktyl.gif")
     pozycja=pterodaktyl.goto(random.randint(1700,1750), 70)
-    pterodaktyl.dx = -0.6
+    pterodaktyl.dx = -1
 
 # Dino
     dino = turtle.Turtle()
